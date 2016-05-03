@@ -4,6 +4,7 @@ var gulp = require('gulp');
 var del = require('del');
 var KarmaServer = require('karma').Server;
 var livereload = require('gulp-refresh');
+var merge = require('merge2');
 var rename = require('gulp-rename');
 var replace = require('gulp-replace');
 var sourcemaps = require('gulp-sourcemaps');
@@ -18,15 +19,15 @@ var paths = {
 }
 
 gulp.task('scripts', ['tslint'], function () {
-    return gulp.src(paths.scripts)
-        //compile typescript into javascript
+    var tsResult = gulp.src(paths.scripts)
         .pipe(ts({
-            declarationFiles: false,
+            declarationFiles: true,
             removeComments: false,
             sortOutput: true
-        })).js
-        // ignore the code inside the iife parameters
-        .pipe(replace(/(}\)\()(.*\|\|.*;)/g, '$1/* istanbul ignore next */$2'))
+        }));
+
+    // ignore the code inside the iife parameters
+    var stream1 = tsResult.js.pipe(replace(/(}\)\()(.*\|\|.*;)/g, '$1/* istanbul ignore next */$2'))
         // ignore the extends code that typescript writes from istanbul
         .pipe(replace(/(var __extends = \(this && this.__extends\))/g, '$1/* istanbul ignore next */'))
         // initialize the sourcemaps AFTER the typescript has been compiled
@@ -38,6 +39,9 @@ gulp.task('scripts', ['tslint'], function () {
         .pipe(sourcemaps.write('./', { addComment: true }))
         // write the uglified file
         .pipe(gulp.dest('dist'));
+
+    var stream2 = tsResult.dts.pipe(gulp.dest('dist'));
+    return merge([stream1, stream2]);
 });
 
 gulp.task('tslint', function () {
