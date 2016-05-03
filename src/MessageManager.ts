@@ -43,9 +43,7 @@ class MessageManager {
         var messages: { [key: string]: number } = {};
         for (var i = 0; i < this.messageStack.length; i++) {
             var messageContainer = this.messageStack[i];
-            if (messages[messageContainer.message] === undefined) {
-                messages[messageContainer.message] = 0;
-            }
+            messages[messageContainer.message] = 0;
             var addend = messageContainer.direction === '+' ? 1 : -1;
             messages[messageContainer.message] += addend;
         }
