@@ -1,0 +1,40 @@
+{
+  "name": "messagemanager",
+  "version": "1.0.0",
+  "description": "javascript message manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TwitchBronBron/MessageManager.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TwitchBronBron/MessageManager/issues"
+  },
+  "homepage": "https://github.com/TwitchBronBron/MessageManager#readme",
+  "devDependencies": {
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-refresh": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-sourcemaps": "^2.0.0-alpha",
+    "gulp-tslint": "^5.0.0",
+    "gulp-tslint-stylish": "^1.1.1",
+    "gulp-typescript": "^2.13.0",
+    "gulp-uglify": "^1.5.3",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-coverage": "^0.5.5",
+    "karma-jasmine": "^0.3.8",
+    "karma-jasmine-html-reporter-livereload": "^1.0.0",
+    "karma-mocha-reporter": "^2.0.2",
+    "karma-typescript-preprocessor": "^0.1.2",
+    "tslint": "^3.8.1"
+  }
+}
