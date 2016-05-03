@@ -1,3 +1,8 @@
+/**
+ * @license MessageManager v1.0.0
+ * (c) 2016 Bronley Plumb
+ * License: MIT
+ */
 var MessageManager = (function () {
     function MessageManager() {
         this.messageStack = [];
@@ -55,6 +60,8 @@ var MessageManager = (function () {
     };
     /**
      * Adds or removes a message from the manager.
+     * @param {string} message - the message
+     * @param {boolean} [isAdd=true] - if true, a message is added or incremented. If false, a message is removed or decrimented
      */
     MessageManager.prototype.set = function (message, isAdd) {
         var direction = isAdd === false ? '-' : '+';

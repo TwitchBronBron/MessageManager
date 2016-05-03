@@ -1,3 +1,8 @@
+/**
+ * @license MessageManager v1.0.0
+ * (c) 2016 Bronley Plumb
+ * License: MIT
+ */
 class MessageManager {
     private messageStack: IMessageContainer[] = [];
     public message: string;
@@ -60,6 +65,8 @@ class MessageManager {
 
     /**
      * Adds or removes a message from the manager. 
+     * @param {string} message - the message
+     * @param {boolean} [isAdd=true] - if true, a message is added or incremented. If false, a message is removed or decrimented
      */
     public set(message: string, isAdd: boolean): void {
         var direction = isAdd === false ? '-' : '+';
