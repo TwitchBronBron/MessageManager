@@ -2,6 +2,7 @@
  * @license MessageManager v1.0.0
  * (c) 2016 Bronley Plumb
  * License: MIT
+ * https://github.com/TwitchBronBron/MessageManager
  */
 var MessageManager = (function () {
     function MessageManager() {
