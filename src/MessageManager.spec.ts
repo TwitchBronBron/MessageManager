@@ -1,5 +1,9 @@
 ///<reference path="MessageManager.ts" />
-declare var describe: any, it: any, expect: any, beforeEach: any;
+declare var
+    describe: any,
+    it: any,
+    expect: any,
+    beforeEach: any;
 /* tslint:disable:typedef */
 describe('MessageManager', function () {
     var mm: MessageManager;
@@ -80,7 +84,19 @@ describe('MessageManager', function () {
             mm.add('msg');
             expect(mm.message).toBe(undefined);
         });
+    });
 
-
+    it('works with requirejs', function (done) {
+        var req: any = require;
+        req(['MessageManager'], function (MM) {
+            try {
+                var m = new MM();
+                expect(true).toBe(true);
+                done();
+            } catch (e) {
+                expect(true).toBe(false);
+                done();
+            }
+        });
     });
 });
