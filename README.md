@@ -6,21 +6,34 @@ A simple message manager class for javascript that allows the management of many
 # Installation
 ## npm
     npm install message-manager
+
+Then import it into your node script
+    
+```javascript
+var MessageManager = require('message-manager');
+```
+
 ## browser
 Include the script on your page
 
-    <script src="MessageManager.js"></script>
+```html
+<script src="MessageManager.js"></script>
+```
 
 Then consume it in one of the following ways:
 ### As a global
-    var mm = new MessageManager();
+
+```javascript
+var mm = new MessageManager();
+```
 
 ### As a RequireJS or AMD module
-    require(['MessageManager'], function(MessageManager){
-        var mm = new MessageManager();
-    });
 
-
+```javascript
+require(['MessageManager'], function(MessageManager){
+    var mm = new MessageManager();
+});
+```
     
 # Usage
 ```javascript
@@ -41,4 +54,3 @@ mm.message === 'loading user data'
 mm.remove('loading user data');
 //mm.message === undefined
 ```
-
