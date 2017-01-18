@@ -41,14 +41,14 @@ require(['MessageManager'], function(MessageManager){
 var mm = new MessageManager();
 
 mm.add('loading user data');
-mm.message === 'loading user data'
+//mm.message === 'loading user data'
 
 var remove = mm.add('loading something else');
-mm.message === 'loading something else'
+//mm.message === 'loading something else'
 
 //call the remove function to remove a message
 remove();
-mm.message === 'loading user data'
+//mm.message === 'loading user data'
 
 //call the remove method manually to remove a message
 mm.remove('loading user data');
