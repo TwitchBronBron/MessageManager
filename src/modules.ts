@@ -7,6 +7,6 @@ if (typeof module === 'object' && module.exports) {
 //register with AMD
 if (typeof define === 'function' && define.amd) {
     define('MessageManager', function () {
-        return MessageManager;
+        return (window as any).MessageManager;
     });
 }

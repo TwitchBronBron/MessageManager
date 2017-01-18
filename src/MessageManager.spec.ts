@@ -1,18 +1,33 @@
-///<reference path="MessageManager.ts" />
 declare var
     describe: any,
     it: any,
     expect: any,
-    beforeEach: any;
+    beforeEach: any,
+    MessageManager: any;
 /* tslint:disable:typedef */
 describe('MessageManager', function () {
-    var mm: MessageManager;
+    var mm: any;
     beforeEach(function () {
         mm = new MessageManager();
     });
 
-    it('exists', function () {
-        expect((window as any).MessageManager).not.toBe(undefined);
+    function loadAsGlobal() {
+        return new Promise((resolve) => {
+            (window as any).define = undefined;
+
+            var script = document.createElement('script');
+            script.onload = function () {
+                resolve();
+            };
+            script.src = 'base/dist/MessageManager.js';
+            document.getElementsByTagName('head')[0].appendChild(script);
+        });
+    }
+
+    it('exists', function (done) {
+        loadAsGlobal().then(() => {
+            expect((window as any).MessageManager).not.toBe(undefined);
+        }).then(done);
     });
 
     it('constructs', function () {

@@ -4,21 +4,44 @@ var concat = require('gulp-concat');
 var ignore = require('gulp-ignore');
 var karma = require('karma');
 var merge = require('merge2');
+var replace = require('gulp-replace');
 var sourcemaps = require('gulp-sourcemaps');
 var ts = require('gulp-typescript');
 var uglify = require('gulp-uglify');
 
-var tsProject = ts.createProject('tsconfig.json', {
-    declaration: true
+// var tsProject = ts.createProject('tsconfig.json', {
+//     declaration: true
+// });
+
+gulp.task('build-es2015', function () {
+    var tsResult = gulp.src([
+        'src/MessageManager.ts'
+    ]).pipe(ts({
+        "module": "es2015",
+        "noImplicitAny": true,
+        "removeComments": false,
+        "preserveConstEnums": true,
+        declaration: true
+    }));
+
+    return merge(
+        tsResult.js.pipe(gulp.dest('./src')),
+        tsResult.dts.pipe(gulp.dest('./src'))
+    );
 });
 
-gulp.task('build', function () {
+gulp.task('build-umd', function () {
     var tsResult = gulp.src([
         'src/MessageManager.ts',
         'src/modules.ts'
-    ])
-        //.pipe(sourcemaps.init())
-        .pipe(tsProject());
+    ]).pipe(replace('export ', ''))
+        .pipe(ts({
+            "module": "none",
+            "noImplicitAny": true,
+            "removeComments": false,
+            "preserveConstEnums": true,
+            declaration: true
+        }));
 
     var dtsResult = tsResult.dts
         .pipe(ignore.exclude('**/modules.d.ts'))
@@ -36,12 +59,12 @@ gulp.task('build', function () {
     return merge([dtsResult, jsResult]);
 });
 
-gulp.task('test-node', function(done){
+gulp.task('test-node', function (done) {
     var MessageManager = require('./dist/MessageManager.js');
-    try{
+    try {
         var mm = new MessageManager();
         done(0);
-    }catch(e){
+    } catch (e) {
         done(1);
     }
 });
@@ -79,14 +102,16 @@ gulp.task('test-browser', function (done) {
             type: 'html',
             dir: 'coverage/'
         },
-        browsers: ['PhantomJS'],
+        browsers: ['Chrome'],
         singleRun: true
-    }, function(exitCode){
+    }, function (exitCode) {
         done(exitCode);
     });
     server.start();
 });
 
 gulp.task('test', ['test-browser', 'test-node']);
+
+gulp.task('build', ['build-es2015', 'build-umd']);
 
 gulp.task('default', ['build']);
