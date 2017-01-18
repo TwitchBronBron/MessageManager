@@ -102,7 +102,7 @@ gulp.task('test-browser', function (done) {
             type: 'html',
             dir: 'coverage/'
         },
-        browsers: ['Chrome'],
+        browsers: ['phantom'],
         singleRun: true
     }, function (exitCode) {
         done(exitCode);
