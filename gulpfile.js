@@ -74,6 +74,7 @@ gulp.task('test-browser', function (done) {
         basePath: '',
         frameworks: ['jasmine'],
         files: [
+        'node_modules/promise-polyfill/promise.js',
             'node_modules/requirejs/require.js',
             'dist/MessageManager.js',
             'src/MessageManager.spec.ts'
@@ -102,7 +103,7 @@ gulp.task('test-browser', function (done) {
             type: 'html',
             dir: 'coverage/'
         },
-        browsers: ['phantom'],
+        browsers: ['PhantomJS'],
         singleRun: true
     }, function (exitCode) {
         done(exitCode);
