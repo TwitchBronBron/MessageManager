@@ -3,7 +3,26 @@
 
 A simple message manager class for javascript that allows the management of many messages at one time, and keeps track of when more messages have been added than removed, and vice versa
 
-#usage
+# Installation
+## npm
+    npm install message-manager
+## browser
+Include the script on your page
+
+    <script src="MessageManager.js"></script>
+
+Then consume it in one of the following ways:
+### As a global
+    var mm = new MessageManager();
+
+### As a RequireJS or AMD module
+    require(['MessageManager'], function(MessageManager){
+        var mm = new MessageManager();
+    });
+
+
+    
+# Usage
 ```javascript
 //construct a new instance of message manager
 var mm = new MessageManager();
