@@ -2,8 +2,5 @@ language: node_js
 node_js:
   - "8.11.3"
 before_script:
-  - npm install -g gulp
-script: 
-  - gulp
-  - npm test
+script: npm test && npm run build
 after_success: npm run coverage

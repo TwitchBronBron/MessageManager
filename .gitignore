@@ -3,3 +3,4 @@ coverage/
 dist/
 src/**/*.js
 src/**/*.d.ts
+.nyc_output/
