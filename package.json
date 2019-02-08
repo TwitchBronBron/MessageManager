@@ -4,6 +4,7 @@
   "description": "A javascript message manager",
   "main": "dist/MessageManager.js",
   "scripts": {
+    "prepare": "gulp",
     "test": "nyc mocha src/**/*.spec.ts --full-trace",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
