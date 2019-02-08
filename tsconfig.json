@@ -1,11 +1,15 @@
 {
     "compilerOptions": {
-        "module": "es2015",
+        "module": "commonjs",
         "noImplicitAny": true,
         "removeComments": false,
-        "preserveConstEnums": true
+        "preserveConstEnums": true,
+        "lib": [
+            "es2015",
+            "dom"
+        ]
     },
-    "include":[
+    "include": [
         "src/MessageManager.ts",
         "src/Modules.ts"
     ]

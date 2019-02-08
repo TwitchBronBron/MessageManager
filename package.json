@@ -4,7 +4,8 @@
   "description": "A javascript message manager",
   "main": "dist/MessageManager.js",
   "scripts": {
-    "test": "gulp test"
+    "test": "nyc mocha src/**/*.spec.ts --full-trace",
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "repository": {
     "type": "git",
@@ -15,25 +16,50 @@
   "bugs": {
     "url": "https://github.com/TwitchBronBron/MessageManager/issues"
   },
-  "module": "index.js",
+  "nyc": {
+    "include": [
+      "src/**/*.ts",
+      "!src/**/*.spec.ts"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "require": [
+      "ts-node/register",
+      "source-map-support/register"
+    ],
+    "reporter": [
+      "text-summary",
+      "html"
+    ],
+    "sourceMap": true,
+    "instrument": true,
+    "check-coverage": false,
+    "lines": 100,
+    "statements": 100,
+    "functions": 100,
+    "branches": 100
+  },
+  "module": "dist/MessageManager.js",
   "homepage": "https://github.com/TwitchBronBron/MessageManager#readme",
   "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "chai": "^4.2.0",
+    "codecov": "^3.1.0",
     "gulp": "^4.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-ignore": "^2.0.2",
     "gulp-replace": "^1.0.0",
+    "gulp-sourcemaps": "^2.6.4",
     "gulp-typescript": "^5.0.0",
     "gulp-uglify": "^3.0.1",
-    "jasmine-core": "^3.3.0",
-    "karma": "^4.0.0",
-    "karma-chrome-launcher": "^2.0.0",
-    "karma-jasmine": "^2.0.1",
-    "karma-mocha-reporter": "^2.2.1",
-    "karma-phantomjs-launcher": "^1.0.2",
-    "karma-typescript-preprocessor": "^0.4.0",
     "merge2": "^1.0.3",
-    "promise-polyfill": "^8.1.0",
+    "mocha": "^5.2.0",
+    "nyc": "^13.2.0",
     "requirejs": "^2.3.2",
+    "source-map-support": "^0.5.10",
+    "ts-node": "^8.0.2",
     "typescript": "^3.3.3"
   }
 }
