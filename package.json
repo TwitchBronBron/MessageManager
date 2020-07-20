@@ -5,9 +5,9 @@
   "main": "dist/MessageManager.js",
   "scripts": {
     "build": "gulp",
-    "test": "nyc mocha",
-    "test:nocover": "mocha",
-    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "clean": "gulp clean",
+    "test": "npm run clean && nyc mocha",
+    "test:nocover": "npm run clean && mocha",
     "publish-coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "mocha": {
@@ -57,9 +57,12 @@
   "module": "dist/MessageManager.js",
   "homepage": "https://github.com/TwitchBronBron/MessageManager#readme",
   "devDependencies": {
+    "@types/chai": "^4.2.11",
     "@types/mocha": "^8.0.0",
+    "@types/node": "^14.0.23",
     "chai": "^4.2.0",
     "coveralls": "^3.1.0",
+    "del": "^5.1.0",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
     "gulp-ignore": "^3.0.0",

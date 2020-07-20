@@ -7,6 +7,14 @@ var replace = require('gulp-replace');
 var sourcemaps = require('gulp-sourcemaps');
 var ts = require('gulp-typescript');
 var uglify = require('gulp-uglify');
+var del = require('del');
+
+gulp.task('clean', async function () {
+    await del([
+        'dist/**/*',
+        'src/**/*.{d.ts,js}'
+    ]);
+});
 
 gulp.task('build-es2015', function () {
     var tsResult = gulp.src([

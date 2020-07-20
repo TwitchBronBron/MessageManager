@@ -1,4 +1,4 @@
-declare var module: any, define: any, System: any;
+declare var define: any, System: any;
 
 //register with CommonJS
 if (typeof module === 'object' && module.exports) {
